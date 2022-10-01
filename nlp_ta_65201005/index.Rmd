@@ -1,17 +1,17 @@
 ---
-title: "텍스트 데이터 분석"
+title: "웹 사이트 만들기"
 description: |
-  상담센터의 통화 텍스트로 상담 콜을 이해하고, 민원을 유발하는 통화를 예측해 봅니다.
+  한 번 만들어 봅시다.
 site: distill::distill_website
 output:
   distill::distill_article:
     toc: true
     toc_depth: 3  
 author:
-  - name: 유충현 
-    url: https://choonghyunryu.github.io/
-    affiliation: 한국 R 사용자회
-    affiliation_url: https://r2bit.com/   
+  - name: 송치호
+    url: https://s2626ch.github.io/nlp_ta
+    affiliation: 한국국가기록연구원
+    affiliation_url: https://rikar.org 
 date: "`r Sys.Date()`" 
 ---
 
@@ -33,13 +33,10 @@ knitr::include_graphics("img/what-is-text-analysis.png")
 ```
 
 
-# 민원 상담콜 분석
-
-상담콜 중에서 민원으로 전이되는 사례가 있습니다. 이 건들의 텍스트 데이터를 이해하고 **민원을 예측하는 이진분류 모형**을 만들어봅니다.
 
 <br>
 
 ```{r gis, echo=FALSE, out.width = "70%", fig.align='center'}
-knitr::include_graphics("img/complaint.png")
+knitr::include_graphics("img/complaint_alterImage01.png")
 ```
 
