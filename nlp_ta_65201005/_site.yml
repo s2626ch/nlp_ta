@@ -1,19 +1,19 @@
-name: "샘플 웹 사이트"
-title: "샘플 웹 사이트"
+name: "웹 사이트 개발하기"
+title: "웹 사이트 개발하기"
 description: |
-  My Website
+  텍스트 분석을 전문가에게 체계적으로 배우는 기회
 output_dir: "docs"
 navbar:
   right:
     - text: "Home"
       href: index.html
-    - text: "샘플 웹 사이트 개발하기"
+    - text: "웹 사이트 개발하기"
       href: create_website.html
-    - text: "텍스트 기반 이진분류 모형"
+    - text: "나의 텍스트 분석 경험"
       menu:
-        - text: "LASSO 모형기반 민원 예측"
+        - text: "대통령 연설문 예측측"
           href: classifier_lasso.html
-        - text: "BERT 기반 민원 예측"
+        - text: "캡스톤 프로젝트”측"
           href: classifier_bert.html
 output:
   distill::distill_article:

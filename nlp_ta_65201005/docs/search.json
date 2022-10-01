@@ -16,7 +16,7 @@
       ],
       "date": "`r Sys.Date()`",
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2022-10-01T19:11:21+09:00"
+      "last_modified": "2022-10-01T19:48:16+09:00"
     },
     {
       "path": "classifier_lasso.html",
@@ -34,7 +34,7 @@
       ],
       "date": "`r Sys.Date()`",
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2022-10-01T19:11:29+09:00"
+      "last_modified": "2022-10-01T19:48:18+09:00"
     },
     {
       "path": "create_website.html",
@@ -52,7 +52,7 @@
       ],
       "date": "`r Sys.Date()`",
       "contents": "\r\n\r\nContents\r\n설정사항\r\n수정해야할 사항\r\n웹 사이트 구성 파일\r\n개별 페이지 구성 정보\r\n\r\nData: USArrests\r\n표(tables) 출력\r\n플롯(plots) 출력\r\n\r\n\r\n\r\n\r\n\r\n\r\n들어가기\r\n이 웹 사이트는 예제를 위해서 만든 간단한 사이트입니다.\r\n\r\n여러분은 이 Skelton 사이트에 살을 붙여서 자신의 웹 사이트를 만들 수 있습니다. 그리고 이 작업은 사이트의 구조를 이해하는 것으로부터 시작됩니다.\r\n\r\n\r\n\r\n설정사항\r\n수정해야할 사항\r\n본 템플리트는 웹 사이트 중의 한 페이지로 bitReport website라는 이름의 예제입니다. 환경 설정파일인 _site.yml에 “샘플 웹 사이트”이라는 제목으로 연결되어 있습니다. 만약에 예제 템플리트를 완성하려면 이 페이지의 이름을 _site.yml에서의 create_website과 동일하게 설정해야 합니다.\r\n웹 사이트 구성 파일\r\n웹 사이트를 구성하는 설정은 구성파일인 **_site.yml**에 정의합니다.\r\n_site.yml 파일에서의 사용자가 설정해야할 항목은 다음과 같습니다.\r\nname: 웹 사이트의 이름\r\n헤더의 네비게이션 바의 왼쪽에 링크표시됩니다.\r\n\r\ntitle: 웹 사이트의 타이틀\r\n헤더의 네비게이션 바의 왼쪽에 링크표시됩니다.\r\n\r\ndescription: 웹 사이트의 설명\r\noutput_dir: 생성될 웹 사이트의 정적 HTML이 저장될 디렉토리\r\n“docs”로 기본설정됩니다. 이 디렉토리는 github page로 deploy할 때 유용합니다.\r\n\r\nnavbar: 웹 사이트의 메뉴를 정의하는 섹션입니다.\r\n수정하지 않습니다.\r\n\r\nright: 웹 사이트의 메뉴를 정의합니다.\r\ntext는 메뉴 이름입니다.\r\nhref는 메뉴와 연결할 웹 페이지입니다. 확장자는 html입니다.\r\nR markdown 파일과 동일하게 이름을 부여합니다.\r\n\r\nmenu는 서브메뉴를 정의합니다.\r\n빈 분리자를 만들기 위해서는 “- text:”—“를 사용합니다.\r\n\r\noutput: 웹 사이트 출력에 대한 설정입니다. 사용자가 수정하지 않습니다.\r\n개별 페이지 구성 정보\r\n개별 페이지를 구성하기 위해서는 knitr YAML을 수정해야 합니다.\r\ntitle: 웹 페이지 제목입니다.\r\ndescription: 웹 페이지를 간단하게 소개하는 소개문입니다.\r\nauthor: 웹 페이지 컨텐츠 저작자 정보를 기술합니다.\r\nname: 저작자 이름\r\nurl: 저작자 개인 홈페이지 URL\r\naffiliation: 저작자 소속 회사/부서\r\naffiliation_url: 저작자 소속 회사/부서 홈페이지 URL\r\n\r\ndate: 컨텐츠를 생성한 날짜\r\noutput: 웹 사이트 출력에 대한 설정입니다.\r\ntoc: 목차를 출력할 지의 여부를 정의합니다. true이면 출력합니다.\r\ntoc_depth: 출력할 목차의 depth를 정의합니다. 3이면 3 depth까지 표시합니다.\r\n\r\n\r\n이 예제 웹 사이트는 하나의 완성된 페이지를 만드는 것이 아닌, 가상의 site를 담은 Skelton만 제공합니다. 그러므로 개별 페이지의 내용에 신경쓸 필요가 없습니다.\r\n\r\nData: USArrests\r\nUSArrests는 미국 주별 강력 범죄율을 기록한 데이터입니다.\r\n이 데이터셋은 4개의 변수와 50개의 관측치로 구성된 데이터 프레임(data.frame) 객체입니다.:\r\nMurder\r\nnumeric. 살인범 검거 건수(100,000건당)\r\n\r\nAssault\r\nnumeric. 폭행범 검거 건수(100,000건당)\r\n\r\nUrbanPop\r\nnumeric. 도시 인구 비율(백분율)\r\n\r\nRape\r\nnumeric. 강간범 검거 건수(100,000건당)\r\n\r\n\r\n\r\n# code here\r\n\r\n\r\n표(tables) 출력\r\n미국 주별 강력 범죄율을 기록한 데이터인 USArrests를 표로 출력합니다.\r\n\r\nUSArrests %>%\r\n    tibble::rownames_to_column(\"주 (State)\") %>%\r\n    arrange(desc(Murder + Assault + Rape)) %>%\r\n    filter(row_number() <= 10) %>%\r\n    select(1:3, 5, 4) %>%\r\n    rename(살인범 = Murder) %>%\r\n    rename(폭행범 = Assault) %>%\r\n    rename(강간범 = Rape) %>%\r\n    rename(`도시인구수(백분율)` = UrbanPop) %>%\r\n    kableExtra::kbl(caption = \"미국 범죄 상위 10개 주 현황\", format.args = list(big.mark = \",\",\r\n        digits = 1, scientific = 6)) %>%\r\n    kableExtra::kable_styling(bootstrap_options = c(\"striped\", \"hover\")) %>%\r\n    kableExtra::add_header_above(c(` ` = 1, `범죄자수 (인구 만명 당)` = 3,\r\n        ` ` = 1)) %>%\r\n    kableExtra::kable_classic(full_width = TRUE)\r\n\r\nTable 1: 미국 범죄 상위 10개 주 현황\r\n\r\n\r\n\r\n\r\n\r\n범죄자수 (인구 만명 당)\r\n\r\n\r\n\r\n\r\n\r\n주 (State)\r\n\r\n\r\n살인범\r\n\r\n\r\n폭행범\r\n\r\n\r\n강간범\r\n\r\n\r\n도시인구수(백분율)\r\n\r\n\r\nFlorida\r\n\r\n\r\n15\r\n\r\n\r\n335\r\n\r\n\r\n32\r\n\r\n\r\n80\r\n\r\n\r\nNorth Carolina\r\n\r\n\r\n13\r\n\r\n\r\n337\r\n\r\n\r\n16\r\n\r\n\r\n45\r\n\r\n\r\nMaryland\r\n\r\n\r\n11\r\n\r\n\r\n300\r\n\r\n\r\n28\r\n\r\n\r\n67\r\n\r\n\r\nArizona\r\n\r\n\r\n8\r\n\r\n\r\n294\r\n\r\n\r\n31\r\n\r\n\r\n80\r\n\r\n\r\nNew Mexico\r\n\r\n\r\n11\r\n\r\n\r\n285\r\n\r\n\r\n32\r\n\r\n\r\n70\r\n\r\n\r\nCalifornia\r\n\r\n\r\n9\r\n\r\n\r\n276\r\n\r\n\r\n41\r\n\r\n\r\n91\r\n\r\n\r\nAlaska\r\n\r\n\r\n10\r\n\r\n\r\n263\r\n\r\n\r\n44\r\n\r\n\r\n48\r\n\r\n\r\nSouth Carolina\r\n\r\n\r\n14\r\n\r\n\r\n279\r\n\r\n\r\n22\r\n\r\n\r\n48\r\n\r\n\r\nNevada\r\n\r\n\r\n12\r\n\r\n\r\n252\r\n\r\n\r\n46\r\n\r\n\r\n81\r\n\r\n\r\nMichigan\r\n\r\n\r\n12\r\n\r\n\r\n255\r\n\r\n\r\n35\r\n\r\n\r\n74\r\n\r\n\r\n플롯(plots) 출력\r\n이 예제는 가상의 설명을 포함하고 있는, 그저 템플리트를 위한 예제입니다.\r\n온도에 따른 수은의 증기압을 기록한 데이터인 pressure 데이터 프레임을 산점도록 시각화합니다.\r\n\r\n\r\nplot(pressure, pch = 16, main = \"Relation between temperature and pressure\")\r\nlines(loess(pressure ~ temperature, pressure), col = \"steelblue\")\r\n\r\n\r\n\r\nFigure 1: 플롯 예제\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
-      "last_modified": "2022-10-01T19:11:33+09:00"
+      "last_modified": "2022-10-01T19:48:43+09:00"
     },
     {
       "path": "index.html",
@@ -66,7 +66,7 @@
       ],
       "date": "`r Sys.Date()`",
       "contents": "\r\n\r\nContents\r\nSTT 텍스트 분석\r\n\r\nSTT 텍스트 분석\r\n음성 인식(Speech Recognition)이란 사람이 말하는 음성 언어를 컴퓨터가 해석해 그 내용을 문자 데이터로 전환하는 처리를 말합니다. STT(Speech-to-Text)라고도 합니다.\r\n상담센터의 상담 내용을 텍스트화한 STT 데이터를 자연어 처리(NLP, Natural Language Processing)하여 함축되어 있는 고객의 의도를 이해합니다.\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
-      "last_modified": "2022-10-01T19:11:36+09:00"
+      "last_modified": "2022-10-01T19:48:47+09:00"
     }
   ],
   "collections": []
