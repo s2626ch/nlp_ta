@@ -72,3 +72,16 @@ tab_evaluate <- tabs[[1]] %>%
   html_table()
 tab_evaluate
 
+# 평가 계획 테이블 추출하기
+tab_evaluate <- tabs[[1]] %>% 
+  html_table()
+tab_evaluate
+
+
+tabs[2]
+# 주별 진도계획 추출하기
+tab_plan <- tabs[[2]] %>% 
+  html_table()
+
+tab_plan
+
