@@ -84,8 +84,6 @@ polarity_word_counts %>%
   labs(y = "긍부정 극성의 발현 빈도")
 
 
-
-
 buzz %>% 
   group_by(SECTION) %>% 
   tally()
