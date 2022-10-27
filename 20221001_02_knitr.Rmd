@@ -1,0 +1,42 @@
+
+---
+title: '20221001'
+author: "chsong"
+date: "2022-10-26"
+output: word_document
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##  실습 1
+
+```{r}
+summary(iris)
+```
+
+### 초기세팅
+```{r dup_iris}
+iris[duplicated(iris),]
+
+```
+
+### r dup_iris2, echo=FALSE
+
+```{r dup_iris2, echo=FALSE}
+iris[duplicated(iris),]
+
+```
+
+### r dup_iris2, include=FALSE
+
+```{r dup_iris3, include=FALSE}
+iris[duplicated(iris),]
+
+```
+
+### r dup_iris4, comment "*"
+
+``` {r dup_iris4, comment = "*"}
+iris[duplicated(iris),]
+```
