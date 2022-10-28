@@ -179,6 +179,10 @@ polarity_word_counts %>%
   wordcloud::comparison.cloud(colors = c("blue", "red"), max.words = 150,
                               title.size = 2)
 
+
+
+# buzz 데이터의 이해
+
 buzz
 
 
@@ -186,6 +190,8 @@ buzz %>%
   group_by(SECTION) %>% 
   tally()
 
+
+# 명사 토큰화
 term_noun <- buzz %>% 
   filter(SECTION %in% "맘스홀릭") %>% 
   filter(row_number() == 1) %>% 
@@ -194,8 +200,6 @@ term_noun <- buzz %>%
   morpho_mecab()
 term_noun
 
-term_noun %>% 
-  table() 
 
 # 품사 토큰화
 term_morpheme <- buzz %>% 
@@ -204,13 +208,21 @@ term_morpheme <- buzz %>%
   select(CONTENT) %>% 
   pull() %>% 
   morpho_mecab(type = "morpheme")
+term_noun
 
-term_morpheme
+# 빈도수
+term_noun %>% 
+  table()
+
+term_noun %>%  table() %>% 
+  sort(decreasing = TRUE)
 
 term_noun %>% 
   table() %>% 
   wordcloud2::wordcloud2(fontFamily = "NanumSquare")
 
+
+# 불용어
 dic_stopwords <- c("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "년", "월", "일", "때", "전")
 
 is_stopwords <- term_noun %in% dic_stopwords
@@ -223,9 +235,126 @@ clean_term_noun %>%
   table() %>% 
   wordcloud2(fontFamily = "NanumSquare")
 
+# KOSAC 기반의 감성분석
+
+buzz %>% 
+  filter(SECTION %in% "맘스홀릭") %>% 
+  filter(row_number() == 1) %>% 
+  select(CONTENT) %>% 
+  get_opinion()
+
+# KNU 한국어 감성 사전 기반의 감성분석
+
 buzz %>% 
   filter(SECTION %in% "맘스홀릭") %>% 
   filter(row_number() == 1) %>% 
   select(CONTENT) %>% 
   get_polarity()
 
+# 여러 건 분석하기
+
+#  대상 추출하기
+#  맘스홀릭과 레몬테라스에서 각각 100개의 게시물을 추출합니다.
+
+docs <- term_noun <- buzz %>% 
+  filter(SECTION %in% "맘스홀릭") %>% 
+  filter(row_number() <= 100) %>% 
+  bind_rows(
+    buzz %>% 
+      filter(SECTION %in% "레몬테라스") %>% 
+      filter(row_number() <= 100)
+  ) %>% 
+  select(SECTION, CONTENT)
+
+docs
+
+head(docs)
+tail(docs)
+
+
+## 명사토큰화
+
+docs_term <- docs %>% 
+  tidytext::unnest_tokens(
+    output = "TERMS", 
+    input = "CONTENT", 
+    token = morpho_mecab
+  ) %>% 
+  anti_join(
+    data.frame(stopword = dic_stopwords),
+    by = c("TERMS" = "stopword"))
+
+NROW(docs_term)
+
+docs_term <- docs %>% 
+  tidytext::unnest_tokens(
+    output = "TERMS", 
+    input = "CONTENT", 
+    token = morpho_mecab
+  ) %>% 
+  filter(stringr::str_length(TERMS) > 1)
+
+NROW(docs_term)
+
+# 빈도 분석
+tops <- docs_term %>% 
+  group_by(SECTION, TERMS) %>% 
+  tally() %>% 
+  group_by(SECTION) %>% 
+  arrange(desc(n)) %>% 
+  filter(row_number() <= 10)
+
+tops %>% 
+  filter(SECTION %in% "맘스홀릭")
+
+tops %>% 
+  filter(SECTION %in% "레몬테라스")
+
+## 빈도 시각화
+tops %>%
+  mutate(n = ifelse(SECTION == "레몬테라스", -n, n)) %>%
+  mutate(TERMS = reorder(TERMS, n)) %>%
+  ggplot(aes(TERMS, n, fill = SECTION)) +
+  geom_col() +
+  coord_flip() +
+  labs(y = "발현 빈도") +
+  theme_minimal(base_family = "NanumSquare")
+
+docs_term %>% 
+  filter(SECTION %in% "맘스홀릭") %>% 
+  group_by(TERMS) %>% 
+  tally() %>% 
+  wordcloud2::wordcloud2(fontFamily = "NanumSquare")
+
+docs_term %>% 
+  filter(SECTION %in% "레몬테라스") %>% 
+  group_by(TERMS) %>% 
+  tally() %>% 
+  wordcloud2::wordcloud2(fontFamily = "NanumSquare")
+
+# 감성분석
+
+## KOASC 감성분석
+
+docs %>% 
+  filter(SECTION %in% "레몬테라스") %>% 
+  select(CONTENT) %>% 
+  get_opinion(agg = TRUE)
+
+docs %>% 
+  filter(SECTION %in% "맘스홀릭") %>% 
+  select(CONTENT) %>% 
+  get_opinion(agg = TRUE)
+
+## KNU 한국 감성어 사전 감성분석
+
+docs %>% 
+  filter(SECTION %in% "레몬테라스") %>% 
+  select(CONTENT) %>% 
+  get_polarity()
+
+
+docs %>% 
+  filter(SECTION %in% "맘스홀릭") %>% 
+  select(CONTENT) %>% 
+  get_polarity()
